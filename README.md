@@ -30,18 +30,18 @@
 - Run ```systemctl daemon-reload``` and ```systemctl restart docker```
 
 ##### On Master node
-Run ```kubeadm init --apiserver-advertise-address=<Master_node_IP> --pod-network-cidr=10.244.0.0/16```   # For Flannel CNI
-Run ```kubeadm init --apiserver-advertise-address=<Master_node_IP> --pod-network-cidr=192.168.0.0/16```  # For Calico CNI
-Run ```export KUBECONFIG=/etc/kubernetes/admin.conf``` # For root user to access the cluster. 
-Switch to normal user and run ```mkdir -p $HOME/.kube``` ```sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config``` ```sudo chown $(id -u):$(id -g) $HOME/.kube/config```
-Run ```kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml``` #For Flannel
-Run ```kubectl apply -f https://docs.projectcalico.org/v3.0/getting-started/kubernetes/installation/hosted/kubeadm/1.7/calico.yaml``` #For calico
+- Run ```kubeadm init --apiserver-advertise-address=<Master_node_IP> --pod-network-cidr=10.244.0.0/16```   # For Flannel CNI
+- Run ```kubeadm init --apiserver-advertise-address=<Master_node_IP> --pod-network-cidr=192.168.0.0/16```  # For Calico CNI
+- Run ```export KUBECONFIG=/etc/kubernetes/admin.conf``` # For root user to access the cluster. 
+- Switch to normal user and run ```mkdir -p $HOME/.kube``` ```sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config```                                                       ```sudo chown $(id -u):$(id -g) -     $HOME/.kube/config```
+- Run ```kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml``` #For Flannel
+- Run ```kubectl apply -f https://docs.projectcalico.org/v3.0/getting-started/kubernetes/installation/hosted/kubeadm/1.7/calico.yaml``` #For calico
 
 ##### On worker node
-Run the command that is displayed on the screen ```kubeadm join <master_IP>:6443 --token...``` # Run ```kubeadm token create --print-join-command``` if you didn't make a note
+- Run the command that is displayed on the screen ```kubeadm join <master_IP>:6443 --token...``` # Run ```kubeadm token create --print-join-command``` if you didn't make a note
 
 ##### On WSL
-In home directory, run ```mkdir .kube``` and ```scp <master_user>@<IP>:/home/<master_user/.kube/config .```
-Run ```kubectl get po -A``` to confirm that the cluster can be accessed
+- In home directory, run ```mkdir .kube``` and ```scp <master_user>@<IP>:/home/<master_user/.kube/config .```
+- Run ```kubectl get po -A``` to confirm that the cluster can be accessed
 
 
